@@ -24,7 +24,6 @@ const closeBtn = document.getElementById("closeBtn")
 const arrowLeft = document.getElementById("arrowLeft");     
 const counter = document.getElementById("counter");            
 const arrowRight = document.getElementById("arrowRight");  
-// const galleryImages = document.querySelectorAll("#gallery img");
 
 
 function render() {
