@@ -1,108 +1,98 @@
-"use strict";
 
-const myPics = [
-    "img/pic_1.jpg",
-    "img/pic_2.jpg",
-    "img/pic_3.png",
-    "img/pic_4.jpg",
-    "img/pic_5.jpg",
-    "img/pic_6.jpg",
-    "img/pic_7.jpg",
-    "img/pic_8.jpg",
-    "img/pic_9.jpg",
-    "img/pic_10.jpg",
-    "img/pic_11.jpg",
-    "img/pic_12.jpg"
+const pics = [
+"img/alaska-810433_1280.jpg",
+"img/anime-8788959_1280.jpg",
+"img/atmosphere-8752835_1280.png",
+"img/blue-tit-8521052_1280.jpg",
+"img/hurricane-92968_1280.jpg",
+"img/lake-2896379_1280.jpg",
+"img/moorente-8783210_1280.jpg",
+"img/sea-2563389_1280.jpg",
+"img/snow-bunting-6781122_1280.jpg",
+"img/snow-leopard-cubs-8039138_1280.jpg",
+"img/travel-8785493_1280.jpg",
+"img/winter-1675197_1280.jpg"
 ];
 
 let currentIndex = 0;
 
-const gallery = document.getElementById("gallery");
-const popup = document.getElementById("popup");
-const popupImg = document.getElementById("popup_img");
-const popupTitle = document.getElementById("popup_title");
-const closeBtn = document.getElementById("closeBtn");
-const leftArrow = document.querySelector(".left");
-const rightArrow = document.querySelector(".right");
-const currentNumber = document.getElementById("currentNumber");
+const galleryContainer = document.getElementById("gallery");
+const popUp = document.getElementById("popUp");
+const popUpImg = document.getElementById("popUp-img");
+const picTitle = document.getElementById("picTitle");   
+const closeBtn = document.getElementById("closeBtn")
+const arrowLeft = document.getElementById("arrowLeft");     
+const counter = document.getElementById("counter");            
+const arrowRight = document.getElementById("arrowRight");  
+// const galleryImages = document.querySelectorAll("#gallery img");
+
+
+function render() {
+    galleryContainer.innerHTML = "";   
+
+    for (let i = 0; i < pics.length; i++) {
+        const altText = pics[i].split("/").pop().split(".")[0];
+        galleryContainer.innerHTML += 
+        `<img 
+        src=${pics[i]} 
+        class ="gallery-img" 
+        tabIndex = "0"
+        alt = "${altText}"
+        onclick="openPopUp(${i})">`;
+        
+    }
+}
+render();
 
 
 
-
-for (let i = 0; i < myPics.length; i++) {
-    const img = document.createElement("img");
-    img.src = myPics[i];
-
-    const fileName = myPics[i].split("/").pop().split(".")[0];
-    img.alt = fileName;
-
-    img.addEventListener("click", () => {
-        currentIndex = i;
-        showImage();
-        popup.showModal();
-        popup.focus();
-    });
-
-    gallery.appendChild(img);
+function openPopUp(index) {
+    currentIndex = index;
+    popUpImg.src = pics[currentIndex];
+    picTitle.innerHTML = pics[currentIndex].split("/").pop().split(".")[0];
+    counter.innerHTML = `${currentIndex + 1}/${pics.length}`;
+    popUp.showModal();
+    popUp.focus();
 }
 
-function showImage() {
-  popupImg.src = myPics[currentIndex];
-  popupTitle.textContent = "Bild " + (currentIndex + 1);
-
-  currentNumber.textContent = (currentIndex + 1) + "/" + myPics.length;
+function closePopUp(){
+    popUp.close();
 }
 
 
-rightArrow.addEventListener("click", () =>  {
-    currentIndex++;
 
-    if (currentIndex >= myPics.length) {
+function arrowLeftBtn() {
+ if (currentIndex > 0 ) {
+    currentIndex--;
+ } else {
+    currentIndex = pics.length -1;
+ }
+
+ popUpImg.src = pics[currentIndex];
+ picTitle.innerHTML = pics[currentIndex].split("/").pop().split(".")[0];
+ counter.innerHTML = `${currentIndex + 1}/${pics.length}`;
+}
+
+
+function arrowRightBtn() {
+    if (currentIndex < pics.length - 1 ) {
+        currentIndex++;
+    } else {
         currentIndex = 0;
     }
-    showImage();
-} );
 
-leftArrow.addEventListener("click", () => {
-    currentIndex--;
-
-    if ( currentIndex < 0 ) {
-        currentIndex = myPics.length - 1;
-    }
-    showImage();
-    
-} );
+popUpImg.src = pics[currentIndex];
+picTitle.innerHTML = pics[currentIndex].split("/").pop().split(".")[0];
+counter.innerHTML = `${currentIndex + 1}/${pics.length}`;
+}
 
 
+popUp.addEventListener("keydown", function(e) {
+    if(e.key === "ArrowRight") {
+        arrowRightBtn();
+    } else if (e.key === "ArrowLeft") {
+        arrowLeftBtn();         
+    } else if (e.key === "Escape")
+        closePopUp();   
+});     
 
-closeBtn.addEventListener("click", () => {
-    popup.close();
-} );
-
-
-popup.addEventListener("click", (e) => {
-    if (e.target === popup) {
-        popup.close();
-    }
-})
-
-
-
-popup.addEventListener("keydown", (e) => {
-
-    if (e.key === "ArrowRight") {
-        currentIndex++;
-        if(currentIndex >= myPics.length) currentIndex = 0;
-        showImage();
-        }
-
-        if (e.key === "ArrowLeft") {
-            currentIndex--;
-            if (currentIndex < 0) currentIndex =myPics.length -1;
-            showImage();
-        }
-
-        if (e.key === "Escape") {
-            popup.close();
-        }
-});
