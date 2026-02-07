@@ -19,10 +19,6 @@
     font-style: normal;
 }
 
-:focus {
-    outline: 2px solid rgb(218, 214, 214);
-}
-
 body {
     font-family: "Figtree", sans-serif;
     font-size: 16px;
@@ -92,6 +88,7 @@ h1 {
     height: 150px;
     border-radius: 8px;
     cursor: pointer; 
+    object-fit: cover;
 }
 
 #gallery img:hover {
@@ -132,6 +129,7 @@ h1 {
     display: flex;
     justify-content: center;
 }
+
 #popUp-img {
 flex: none;
 max-width: 100%;
@@ -257,20 +255,23 @@ h1 {
 
 
 @media(max-width:600px) {
-    #popUp{
+    
+    /* #popUp{
     max-width: none;
     max-height: none;
-    width: 100vw;
+    width: 100vw;0
     height: 80vh;   
-}
+} */
+
 #gallery {
     padding-bottom: 40px;
 }
 
-.popUp-content{
+/* .popUp-content{
    padding-top: 80px;
    
-}
+} */
+
 }
 
 html:has(dialog[open]),
