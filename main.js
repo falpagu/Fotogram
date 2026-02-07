@@ -37,7 +37,8 @@ function render() {
         class ="gallery-img" 
         tabIndex = "0"
         alt = "${altText}"
-        onclick="openPopUp(${i})">`;
+        onclick="openPopUp(${i})"
+        onkeydown="if(event.key === 'Enter') openPopUp(${i})">`;
         
     }
 }
