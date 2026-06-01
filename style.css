@@ -38,8 +38,8 @@ main {
                                 /* HEADER */
 
 header {
-    background-color: #09212A;
-    height: 81px; 
+   background-color: #09212A;
+   height: 81px; 
    position: fixed;
    top: 0;
    width: 100%;
@@ -175,7 +175,7 @@ align-items: center;
                         /* FOOTER */
 
 footer {
-    background-image:url(./logos/Footer-bg.png);
+    background-image:url(./icons/Footer-bg.png);
     background-size:cover;
     background-position: center;
     position: fixed;

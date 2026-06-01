@@ -34,17 +34,14 @@ function render() {
         galleryContainer.innerHTML += 
         `<img 
         src=${pics[i]} 
-        class ="gallery-img" 
+                class ="gallery-img" 
         tabIndex = "0"
         alt = "${altText}"
         onclick="openPopUp(${i})"
         onkeydown="if(event.key === 'Enter') openPopUp(${i})">`;
-        
     }
 }
 render();
-
-
 
 function openPopUp(index) {
     currentIndex = index;
@@ -59,8 +56,6 @@ function closePopUp(){
     popUp.close();
 }
 
-
-
 function arrowLeftBtn() {
  if (currentIndex > 0 ) {
     currentIndex--;
@@ -73,7 +68,6 @@ function arrowLeftBtn() {
  counter.innerHTML = `${currentIndex + 1}/${pics.length}`;
 }
 
-
 function arrowRightBtn() {
     if (currentIndex < pics.length - 1 ) {
         currentIndex++;
@@ -85,7 +79,6 @@ popUpImg.src = pics[currentIndex];
 picTitle.innerHTML = pics[currentIndex].split("/").pop().split(".")[0];
 counter.innerHTML = `${currentIndex + 1}/${pics.length}`;
 }
-
 
 popUp.addEventListener("keydown", function(e) {
     if(e.key === "ArrowRight") {
