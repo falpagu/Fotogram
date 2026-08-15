@@ -5,7 +5,7 @@
 ![JavaScript](https://img.shields.io/badge/JavaScript-Vanilla-F7DF1E?logo=javascript&logoColor=black)   <br>
  <br>
  <br>
- 
+ # Screenshot
 <img width="1423" height="975" alt="fotograf_screenshot" src="https://github.com/user-attachments/assets/ed88e7e2-3229-445d-947f-5632669a496b" />  <br>
 
 # Team <br>
